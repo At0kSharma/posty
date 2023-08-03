@@ -11,7 +11,7 @@ const Login: React.FC<LoginProps> = () => {
     email: "",
     password: "",
   });
-
+  //firebase
   const onSubmit = () => {};
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +52,7 @@ const Login: React.FC<LoginProps> = () => {
         placeholder="password"
         type="password"
         onChange={onChange}
+        mb={2}
         fontSize="10pt"
         _placeholder={{ color: "gray.500" }}
         _hover={{

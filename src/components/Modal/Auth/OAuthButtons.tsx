@@ -16,10 +16,10 @@ const OAuthButtons: React.FC = () => {
         <Image src="/images/googlelogo.png" height="20px" mr={4} />
         Continue with Google
       </Button>
-      <Button variant="oauth" mb={2}>
+      {/* <Button variant="oauth" mb={2}>
         <Image src="/images/Apple-Logo.png" height="22px" mr={4} />
         Continue with Apple
-      </Button>
+      </Button> */}
       {error && <Text>{error.message}</Text>}
     </Flex>
   );

@@ -85,7 +85,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
         await transaction.set(communityDocRef, {
           creatorId: users?.uid,
           createdAt: serverTimestamp(),
-          NumberOfMember: 1,
+          numberOfMember: 1,
           privacyType: communityType,
         });
         transaction.set(

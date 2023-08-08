@@ -135,12 +135,3 @@ const useCommunityData = () => {
   };
 };
 export default useCommunityData;
-function collections(
-  firestore: Firestore,
-  arg1: string
-): import("@firebase/firestore").Query<
-  unknown,
-  import("@firebase/firestore").DocumentData
-> {
-  throw new Error("Function not implemented.");
-}

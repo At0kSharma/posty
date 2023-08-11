@@ -68,7 +68,6 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
     const { communityId } = router.query;
     //create new post object
     const newPost: Post = {
-      id: "",
       communityId: communityId as string,
       creatorId: user.uid,
       creatorDisplayName: user.email!.split("@")[0],
@@ -97,7 +96,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
         });
       }
     } catch (error: any) {
-      console.log("hanleCreatePost error", error.message);
+      console.log("handleCreatePost error", error.message);
       setError(true);
     }
     setLoading(false);

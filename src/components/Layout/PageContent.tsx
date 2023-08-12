@@ -6,7 +6,7 @@ type PageContentProps = { children: ReactNode };
 const PageContent: React.FC<PageContentProps> = ({ children }) => {
   return (
     <Flex justify="center" p="16px 0px">
-      <Flex width="95%" justify="center" maxWidth="860px">
+      <Flex width="95%" justify="center" maxWidth="1000px">
         {/* LHS */}
         <Flex
           direction="column"

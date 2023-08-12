@@ -9,6 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import React from "react";
+import UserPostsData from "@/components/Posts/UserPost/UserPostsData";
 
 type CommunityPostsProps = {
   communityName: string;
@@ -21,13 +22,17 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityName }) => {
   React.useEffect(() => {
     const fetchData = async () => {
       const postsCollectionRef = collection(firestore, "posts");
-      const thisCommunityPosts = query(
-        postsCollectionRef,
-        where("communityId", "==", communityName)
-      );
+
+      const CommunityPostsData =
+        communityName === ""
+          ? postsCollectionRef
+          : query(
+              postsCollectionRef,
+              where("communityId", "==", communityName)
+            );
 
       try {
-        const querySnapshot = await getDocs(thisCommunityPosts);
+        const querySnapshot = await getDocs(CommunityPostsData);
         const fetchedPosts: any[] = [];
 
         querySnapshot.forEach((doc) => {
@@ -48,17 +53,13 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityName }) => {
 
   return (
     <>
-      <div>{communityName}</div>
-      <div>
-        {posts.map((post) => (
-          <div key={post.id}>
-            {/* Render the individual fields of the post */}
-            <p>Title: {post.title}</p>
-            <p>body: {post.body}</p>
-            {/* Add more fields here */}
-          </div>
-        ))}
-      </div>
+      {posts.map((post) => (
+        <UserPostsData
+          key={post.id}
+          post={post}
+          communityName={communityName}
+        />
+      ))}
     </>
   );
 };

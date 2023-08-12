@@ -19,7 +19,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
   }
   return (
     <>
-      <Header communityDate={communityData} />
+      <Header communityData={communityData} />
       <PageContent>
         <>
           <CreatePostLink />

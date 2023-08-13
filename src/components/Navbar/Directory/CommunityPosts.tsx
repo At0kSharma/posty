@@ -8,7 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserPostsData from "@/components/Posts/UserPost/UserPostsData";
 
 type CommunityPostsProps = {
@@ -17,9 +17,9 @@ type CommunityPostsProps = {
 
 const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityName }) => {
   // State to hold the fetched posts
-  const [posts, setPosts] = React.useState<any[]>([]);
+  const [posts, setPosts] = useState<any[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const postsCollectionRef = collection(firestore, "posts");
 

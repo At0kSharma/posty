@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { authModalState } from "@/atoms/authModalAtom";
 import {
   Community,
-  communityState,
   CommunitySnippet,
+  communityState,
 } from "@/atoms/communitiesAtom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/clientApp";
 import {
-  Firestore,
   collection,
   doc,
   getDocs,
   increment,
   writeBatch,
 } from "firebase/firestore";
-import { authModalState } from "@/atoms/authModalAtom";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 const useCommunityData = () => {
   const setAuthModalState = useSetRecoilState(authModalState);

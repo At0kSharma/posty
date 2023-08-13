@@ -22,8 +22,10 @@ import {
   PiArrowBendUpRightThin,
 } from "react-icons/pi";
 import { SlPresent } from "react-icons/sl";
+import UserVote from "./UserVote";
 
 type UserPostsDataProps = {
+  key: string;
   post: Post;
   communityName: string;
 };
@@ -71,28 +73,12 @@ const UserPostsData: React.FC<UserPostsDataProps> = ({
           pt="10px"
           display={{ base: "none", md: "flex" }}
         >
-          <Icon
-            as={PiArrowFatUpBold}
-            fontSize="17pt"
-            color="gray.500"
-            p="3px"
-            borderRadius="2px"
-            _hover={{ bg: "gray.200", color: "brand.100" }}
-          />
-          <Text fontSize="8pt" fontWeight={600} padding="3px 0px">
-            {formatNumber(post.voteStatus)}
-          </Text>
-          <Icon
-            as={PiArrowFatDownBold}
-            fontSize="17pt"
-            color="gray.500"
-            p="3px"
-            borderRadius="2px"
-            _hover={{ bg: "gray.200", color: "blue.500" }}
-          />
+          <UserVote post={post} formatNumber={formatNumber} />
         </Flex>
+
         <Flex width="92%" direction="column" p={1} lineHeight="16pt">
           {/* header */}
+          {/* <Text>{post.id}</Text> */}
           <Flex justify="space-between">
             <Flex p={1} align="center">
               {communityName === "" && (
@@ -136,23 +122,7 @@ const UserPostsData: React.FC<UserPostsDataProps> = ({
           {/* footer */}
           <Flex align="center" fontSize="9pt" color="gray.500" fontWeight={600}>
             <Flex align="center" mr={1} display={{ base: "flex", md: "none" }}>
-              <Icon
-                as={PiArrowFatUpBold}
-                p="3px"
-                borderRadius="2px"
-                fontSize="16pt"
-                _hover={{ bg: "gray.100", color: "brand.100" }}
-              />
-              <Text fontWeight={600} padding="0px 5px">
-                {formatNumber(post.voteStatus)}
-              </Text>
-              <Icon
-                as={PiArrowFatDownBold}
-                p="3px"
-                borderRadius="2px"
-                fontSize="16pt"
-                _hover={{ bg: "gray.100", color: "blue.500" }}
-              />
+              <UserVote post={post} formatNumber={formatNumber} />
             </Flex>
             <Flex
               align="center"

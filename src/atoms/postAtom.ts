@@ -29,3 +29,18 @@ export const postState = atom<PostState>({
   key: "postState",
   default: defaultPostState,
 });
+
+export interface PostVoteSnippet {
+  vote?: number;
+}
+interface PostVoteState {
+  voteSnippets: PostVoteSnippet[];
+}
+const defaultPostVoteState: PostVoteState = {
+  voteSnippets: [],
+};
+
+export const postVoteState = atom<PostVoteState>({
+  key: "postVotesState",
+  default: defaultPostVoteState,
+});

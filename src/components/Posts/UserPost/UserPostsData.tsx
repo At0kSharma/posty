@@ -1,27 +1,9 @@
 import { Post } from "@/atoms/postAtom";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Divider,
-  Flex,
-  Icon,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-} from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
-import { BiHide, BiMessage } from "react-icons/bi";
-import { BsBookmark, BsFlag, BsThreeDots } from "react-icons/bs";
-import { FcReddit } from "react-icons/fc";
-import { HiDotsHorizontal } from "react-icons/hi";
-import {
-  PiArrowFatUpBold,
-  PiArrowFatDownBold,
-  PiArrowBendUpRightThin,
-} from "react-icons/pi";
-import { SlPresent } from "react-icons/sl";
+import PostBody from "./PostBody";
+import PostFooter from "./PostFooter";
+import PostHeader from "./PostHeader";
 import UserVote from "./UserVote";
 
 type UserPostsDataProps = {
@@ -64,6 +46,7 @@ const UserPostsData: React.FC<UserPostsDataProps> = ({
         border="1px solid"
         borderColor="gray.300"
         borderRadius={5}
+        cursor="pointer"
       >
         <Flex
           direction="column"
@@ -79,128 +62,17 @@ const UserPostsData: React.FC<UserPostsDataProps> = ({
         <Flex width="92%" direction="column" p={1} lineHeight="16pt">
           {/* header */}
           {/* <Text>{post.id}</Text> */}
-          <Flex justify="space-between">
-            <Flex p={1} align="center">
-              {communityName === "" && (
-                <>
-                  <Icon
-                    as={FcReddit}
-                    fontSize="18pt"
-                    bg="blue.400"
-                    borderRadius={50}
-                    mr={1}
-                  />
-                  <Text fontSize="9pt" fontWeight={600}>
-                    r/{post.communityId}
-                  </Text>
-                  <Text
-                    textAlign="center"
-                    color="gray.400"
-                    p="0px 5px"
-                    mt="-5px"
-                    fontSize="9pt"
-                    fontWeight={600}
-                  >
-                    .
-                  </Text>
-                </>
-              )}
-              <Text fontSize="9pt" color="gray.500">
-                Posted by {" u/"}
-                {post.creatorDisplayName} {formatTimeAgo(post.createdAt)}
-              </Text>
-            </Flex>
-            {/* <Flex>JOin </Flex> */}
-          </Flex>
+          <PostHeader
+            communityName={communityName}
+            post={post}
+            formatTimeAgo={formatTimeAgo}
+          />
+
           {/* body */}
-          <Flex direction="column" p={1}>
-            <Text fontSize="14pt">{post.title}</Text>
-            <Text fontSize="11pt" color="gray.600" padding="10px 0px">
-              {post.body}
-            </Text>
-          </Flex>
+          <PostBody post={post} />
+
           {/* footer */}
-          <Flex align="center" fontSize="9pt" color="gray.500" fontWeight={600}>
-            <Flex align="center" mr={1} display={{ base: "flex", md: "none" }}>
-              <UserVote post={post} formatNumber={formatNumber} />
-            </Flex>
-            <Flex
-              align="center"
-              mr={1}
-              p="5px 5px"
-              borderRadius={3}
-              _hover={{ bg: "gray.100" }}
-            >
-              <Icon as={BiMessage} fontSize="15pt" mr={1} />
-              <Text>{formatNumber(post.numberOfComments)} Comments</Text>
-            </Flex>
-            <Flex
-              align="center"
-              mr={1}
-              p="5px 5px"
-              borderRadius={3}
-              _hover={{ bg: "gray.100" }}
-              display={{ base: "none", md: "flex" }}
-            >
-              <Icon as={SlPresent} fontSize="12pt" mr={1} />
-              <Text>Award</Text>
-            </Flex>
-            <Flex
-              align="center"
-              mr={1}
-              p="5px 5px"
-              borderRadius={3}
-              _hover={{ bg: "gray.100" }}
-            >
-              <Icon as={PiArrowBendUpRightThin} fontSize="15pt" mr={1} />
-              <Text>Share</Text>
-            </Flex>
-            <Flex
-              align="center"
-              mr={1}
-              p="5px 5px"
-              borderRadius={3}
-              _hover={{ bg: "gray.100" }}
-              display={{ base: "none", md: "flex" }}
-            >
-              <Icon as={BsBookmark} fontSize="12pt" mr={1} />
-              <Text>Save</Text>
-            </Flex>
-            <Flex
-              align="center"
-              mr={1}
-              p="5px 5px"
-              borderRadius={3}
-              _hover={{ bg: "gray.100" }}
-              display={{ md: "none" }}
-            >
-              <Menu>
-                <MenuButton>
-                  <Icon as={HiDotsHorizontal} mb="-2px" />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>
-                    <Icon as={SlPresent} fontSize="12pt" mr={1} />
-                    <Text>Award</Text>
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem>
-                    <Icon as={BsBookmark} fontSize="12pt" mr={1} />
-                    <Text>Save</Text>
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem>
-                    <Icon as={BiHide} fontSize="12pt" mr={1} />
-                    Hide
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem>
-                    <Icon as={BsFlag} fontSize="12pt" mr={1} /> Report
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </Flex>
-          </Flex>
+          <PostFooter post={post} formatNumber={formatNumber} />
         </Flex>
       </Flex>
     </>

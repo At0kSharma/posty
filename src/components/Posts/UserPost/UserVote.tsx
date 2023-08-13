@@ -1,23 +1,17 @@
 import { authModalState } from "@/atoms/authModalAtom";
-import { Post, PostVoteSnippet, postVoteState } from "@/atoms/postAtom";
+import { Post, PostVoteSnippet } from "@/atoms/postAtom";
 import { auth, firestore } from "@/firebase/clientApp";
-import { Button, Flex, Icon, Text } from "@chakra-ui/react";
-import {
-  collection,
-  doc,
-  getDoc,
-  increment,
-  writeBatch,
-} from "firebase/firestore";
+import { Icon, Text } from "@chakra-ui/react";
+import { doc, getDoc, increment, writeBatch } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
-  PiArrowFatUpBold,
   PiArrowFatDownBold,
-  PiArrowFatUpFill,
   PiArrowFatDownFill,
+  PiArrowFatUpBold,
+  PiArrowFatUpFill,
 } from "react-icons/pi";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 type UserVoteProps = {
   post: Post;

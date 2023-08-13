@@ -1,15 +1,7 @@
-import { firestore } from "@/firebase/clientApp";
-import { GetServerSidePropsContext } from "next";
-import {
-  doc,
-  getDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import React, { useEffect, useState } from "react";
 import UserPostsData from "@/components/Posts/UserPost/UserPostsData";
+import { firestore } from "@/firebase/clientApp";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 
 type CommunityPostsProps = {
   communityName: string;

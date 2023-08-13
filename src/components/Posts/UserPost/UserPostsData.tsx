@@ -69,8 +69,8 @@ const UserPostsData: React.FC<UserPostsDataProps> = ({
           direction="column"
           align="center"
           bg="blackAlpha.50"
+          pt="10pt"
           width="8%"
-          pt="10px"
           display={{ base: "none", md: "flex" }}
         >
           <UserVote post={post} formatNumber={formatNumber} />

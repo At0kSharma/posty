@@ -1,7 +1,7 @@
 import { authModalState } from "@/atoms/authModalAtom";
 import { Post, PostVoteSnippet, postVoteState } from "@/atoms/postAtom";
 import { auth, firestore } from "@/firebase/clientApp";
-import { Flex, Icon, Text } from "@chakra-ui/react";
+import { Button, Flex, Icon, Text } from "@chakra-ui/react";
 import {
   collection,
   doc,
@@ -11,7 +11,12 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { PiArrowFatUpBold, PiArrowFatDownBold } from "react-icons/pi";
+import {
+  PiArrowFatUpBold,
+  PiArrowFatDownBold,
+  PiArrowFatUpFill,
+  PiArrowFatDownFill,
+} from "react-icons/pi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 type UserVoteProps = {
@@ -161,32 +166,31 @@ const UserVote: React.FC<UserVoteProps> = ({ post, formatNumber }) => {
   useEffect(() => {
     if (!user) return;
     getPostUserSnippet();
-  }, [post, user]);
+  }, [totalVotes, upVote, downVote]);
   return (
     <>
       <Icon
-        as={PiArrowFatUpBold}
-        fontSize="17pt"
+        as={upVote ? PiArrowFatUpFill : PiArrowFatUpBold}
+        fontSize="18pt"
+        p={1}
         color={upVote ? "brand.100" : "gray.500"}
-        p="3px"
-        borderRadius="2px"
-        _hover={{ bg: "gray.200", color: "brand.100" }}
+        _hover={{ bg: "gray.300", color: "brand.100" }}
         onClick={handleUpVote}
       />
       <Text
-        fontSize="8pt"
+        fontSize="9pt"
+        color={upVote ? "brand.100" : downVote ? "blue.600" : "gray.500"}
         fontWeight={600}
-        padding={{ base: "0px 5px", md: "5px 0px" }}
+        padding={{ base: "0px 4px", md: "4px 0px" }}
       >
         {formatNumber(totalVotes)}
       </Text>
       <Icon
-        as={PiArrowFatDownBold}
-        fontSize="17pt"
-        color={downVote ? "blue.500" : "gray.500"}
-        p="3px"
-        borderRadius="2px"
-        _hover={{ bg: "gray.200", color: "blue.500" }}
+        as={downVote ? PiArrowFatDownFill : PiArrowFatDownBold}
+        fontSize="18pt"
+        p={1}
+        color={downVote ? "blue.600" : "gray.500"}
+        _hover={{ bg: "gray.300", color: "blue.600" }}
         onClick={handleDownVote}
       />
     </>
